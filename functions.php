@@ -50,7 +50,7 @@ if ( ! function_exists( 'neko_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Primary', 'neko' ),
+				'primary-menu' => esc_html__( 'Primary', 'neko' ),
 			)
 		);
 
@@ -62,8 +62,6 @@ if ( ! function_exists( 'neko_setup' ) ) :
 			'html5',
 			array(
 				'search-form',
-				'comment-form',
-				'comment-list',
 				'gallery',
 				'caption',
 				'style',
@@ -117,26 +115,6 @@ function neko_content_width() {
 add_action( 'after_setup_theme', 'neko_content_width', 0 );
 
 /**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function neko_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'neko' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'neko' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'neko_widgets_init' );
-
-/**
  * Enqueue scripts and styles.
  */
 function neko_scripts() {
@@ -144,10 +122,6 @@ function neko_scripts() {
 	wp_style_add_data( 'neko-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'neko-navigation', get_template_directory_uri() . '/js/navigation.js', array(), NEKO_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'neko_scripts' );
 
@@ -170,17 +144,3 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
-
-/**
- * Load WooCommerce compatibility file.
- */
-if ( class_exists( 'WooCommerce' ) ) {
-	require get_template_directory() . '/inc/woocommerce.php';
-}
