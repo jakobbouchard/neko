@@ -119,7 +119,6 @@ add_action( 'after_setup_theme', 'neko_content_width', 0 );
  */
 function neko_scripts() {
 	wp_enqueue_style( 'neko-style', get_stylesheet_uri(), array(), NEKO_VERSION );
-	wp_style_add_data( 'neko-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'neko-navigation', get_template_directory_uri() . '/js/navigation.js', array(), NEKO_VERSION, true );
 }
