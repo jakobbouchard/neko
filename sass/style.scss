@@ -1,5 +1,5 @@
 /*!
-Theme Name: neko
+Theme Name: Neko
 Theme URI: https://underscores.me/
 Author: Jakob Bouchard
 Author URI: https://jakobbouchard.dev/
@@ -10,7 +10,7 @@ Requires PHP: 8.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: neko
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Tags: custom-background, custom-logo, custom-menu, featured-images, translation-ready
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
@@ -26,27 +26,21 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Generic
-	- Normalize
 	- Box sizing
 # Base
 	- Typography
 	- Elements
 	- Links
 	- Forms
-## Layouts
 # Components
 	- Navigation
 	- Posts and pages
-	- Comments
 	- Widgets
 	- Media
 	- Captions
 	- Galleries
-# plugins
-	- Jetpack infinite scroll
 # Utilities
 	- Accessibility
-	- Alignments
 
 --------------------------------------------------------------*/
 
@@ -56,10 +50,6 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
-
-/* Normalize
---------------------------------------------- */
-@import "generic/normalize";
 
 /* Box sizing
 --------------------------------------------- */
@@ -71,23 +61,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "base/base";
 
 /*--------------------------------------------------------------
-# Layouts
---------------------------------------------------------------*/
-// @import "layouts/content-sidebar"; // Uncomment this line for a sidebar on right side of your content.
-// @import "layouts/sidebar-content"; // Uncomment this line for a sidebar on left side of your content.
-
-/*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
 @import "components/components";
-
-/*--------------------------------------------------------------
-# Plugins
---------------------------------------------------------------*/
-
-/* Jetpack infinite scroll
---------------------------------------------- */
-@import "plugins/jetpack/infinite-scroll";
 
 /*--------------------------------------------------------------
 # Utilities
@@ -96,7 +72,3 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /* Accessibility
 --------------------------------------------- */
 @import "utilities/accessibility";
-
-/* Alignments
---------------------------------------------- */
-@import "utilities/alignments";

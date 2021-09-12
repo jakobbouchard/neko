@@ -57,3 +57,5 @@
 			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
+
+	<?php the_header_image_tag(); ?>
