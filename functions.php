@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package neko
+ * @package Neko
  */
 
 if ( ! defined( 'NEKO_VERSION' ) ) {
@@ -24,7 +24,7 @@ if ( ! function_exists( 'neko_setup' ) ) :
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on neko, use a find and replace
+		 * If you're building a theme based on Neko, use a find and replace
 		 * to change 'neko' to the name of your theme in all the template files.
 		 */
 		load_theme_textdomain( 'neko', get_template_directory() . '/languages' );

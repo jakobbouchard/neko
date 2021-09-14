@@ -2,7 +2,7 @@
 /**
  * Neko Theme Customizer
  *
- * @package neko
+ * @package Neko
  */
 
 /**

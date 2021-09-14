@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package neko
+ * @package Neko
  */
 
 if ( ! function_exists( 'neko_posted_on' ) ) :
