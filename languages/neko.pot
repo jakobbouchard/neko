@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-09-13T20:33:36-04:00\n"
+"POT-Creation-Date: 2021-09-13T22:58:02-04:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: neko\n"
@@ -23,7 +23,7 @@ msgid "https://underscores.me/"
 msgstr ""
 
 #. Description of the theme
-msgid "Hi. I'm a starter theme called <code>neko</code>, or <em>underscores</em>, if you like. I'm a theme meant for hacking so don't use me as a <em>Parent Theme</em>. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for."
+msgid "Hi. I'm a starter theme called <code>Neko</code>, or <em>underscores</em>, if you like. I'm a theme meant for hacking so don't use me as a <em>Parent Theme</em>. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for."
 msgstr ""
 
 #. Author of the theme
@@ -60,12 +60,12 @@ msgstr ""
 msgid "Primary"
 msgstr ""
 
-#: header.php:26
+#: header.php:28
 msgid "Skip to content"
 msgstr ""
 
-#: header.php:49
-msgid "Primary Menu"
+#: header.php:47
+msgid "Menu"
 msgstr ""
 
 #. translators: %s: post date.
