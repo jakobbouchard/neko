@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package neko
+ * @package Neko
  */
 
 ?>
@@ -22,7 +22,7 @@
 			<span class="sep"> | </span>
 				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'neko' ), 'neko', '<a href="https://jakobbouchard.dev/">Jakob Bouchard</a>' );
+				printf( esc_html__( 'Theme: %1$s by %2$s.', 'neko' ), 'Neko', '<a href="https://jakobbouchard.dev/">Jakob Bouchard</a>' );
 				?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->

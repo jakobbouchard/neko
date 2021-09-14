@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package neko
+ * @package Neko
  */
 
 ?>
@@ -50,10 +50,12 @@
 			<?php
 			wp_nav_menu(
 				array(
-					'theme_location' => 'menu-1',
+					'theme_location' => 'primary-menu',
 					'menu_id'        => 'primary-menu',
 				)
 			);
 			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
+
+	<?php get_search_form(); ?>
