@@ -380,10 +380,10 @@ textarea {
 	}
 }
 
-.site-main .comment-navigation,
-.site-main
+main .comment-navigation,
+main
 .posts-navigation,
-.site-main
+main
 .post-navigation {
 	margin: 0 0 1.5em;
 }
@@ -409,6 +409,17 @@ textarea {
 
 /* Posts and pages
 --------------------------------------------- */
+header.site-header,
+main,
+footer.site-footer {
+	width: 90vw;
+	width: clamp(16rem, 90vw, 70rem);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
 .sticky {
 	display: block;
 }
@@ -572,6 +583,6 @@ textarea {
 }
 
 /* Do not show the outline on the skip link target. */
-#primary[tabindex="-1"]:focus {
+#content[tabindex="-1"]:focus {
 	outline: 0;
 }
