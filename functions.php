@@ -120,9 +120,18 @@ add_action( 'after_setup_theme', 'neko_content_width', 0 );
 function neko_scripts() {
 	wp_enqueue_style( 'neko-style', get_stylesheet_uri(), array(), NEKO_VERSION );
 
+	wp_deregister_script( 'wp-embed' );
+	// Remove dashicons in frontend for unauthenticated users.
+	if ( ! is_user_logged_in() ) {
+		wp_deregister_style( 'dashicons' );
+	}
+
 	wp_enqueue_script( 'neko-navigation', get_template_directory_uri() . '/js/navigation.js', array(), NEKO_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'neko_scripts' );
+
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 /**
  * Custom template tags for this theme.
