@@ -9,10 +9,10 @@
 
 ?>
 
-<section class="no-results not-found">
-	<header class="page-header">
-		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'neko' ); ?></h1>
-	</header><!-- .page-header -->
+<section class="no-results">
+	<header>
+		<h1><?php esc_html_e( 'Nothing Found', 'neko' ); ?></h1>
+	</header>
 
 	<div class="page-content">
 		<?php

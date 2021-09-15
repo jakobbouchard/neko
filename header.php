@@ -24,26 +24,25 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'neko' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
+	<header>
+		<div class="branding">
 			<?php
 			the_custom_logo();
 			if ( is_front_page() && is_home() ) :
 				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<?php
 			else :
 				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
 				<?php
 			endif;
 			?>
-		</div><!-- .site-branding -->
+		</div><!-- .branding -->
 
-		<nav id="site-navigation" class="main-navigation">
+		<nav>
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'neko' ); ?></button>
 			<?php
 			wp_nav_menu(
@@ -53,8 +52,7 @@
 				)
 			);
 			?>
-		</nav><!-- #site-navigation -->
+		</nav>
 
 		<?php get_search_form(); ?>
-	</header><!-- #masthead -->
-
+	</header>
