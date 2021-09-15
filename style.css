@@ -1,9 +1,8 @@
 /*!
 Theme Name: Neko
-Theme URI: https://underscores.me/
 Author: Jakob Bouchard
 Author URI: https://jakobbouchard.dev/
-Description: Hi. I'm a starter theme called <code>Neko</code>, or <em>underscores</em>, if you like. I'm a theme meant for hacking so don't use me as a <em>Parent Theme</em>. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+Description: Hi. I'm a theme called <code>Neko</code>.
 Version: 1.0.0
 Tested up to: 5.8
 Requires PHP: 8.0
@@ -22,28 +21,76 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-# Generic
-	- Box sizing
+# Fonts
 # Base
+	- Variables
+	- Box sizing
 	- Typography
-	- Elements
-	- Links
-	- Forms
-# Components
-	- Navigation
-	- Posts and pages
-	- Widgets
-	- Media
-	- Captions
-	- Galleries
 # Utilities
 	- Accessibility
 
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-# Generic
+# Fonts
 --------------------------------------------------------------*/
+
+@font-face {
+	font-family: "Atkinson";
+	src: url("fonts/Atkinson_Hyperlegible/WOFF2/Atkinson-Hyperlegible-Regular-102a.woff2") format("woff2"),
+	     url("fonts/Atkinson_Hyperlegible/WOFF/Atkinson-Hyperlegible-Regular-102.woff") format("woff"),
+	     url("fonts/Atkinson_Hyperlegible/TTF/Atkinson-Hyperlegible-Regular-102.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Atkinson";
+	src: url("fonts/Atkinson_Hyperlegible/WOFF2/Atkinson-Hyperlegible-Italic-102a.woff2") format("woff2"),
+	     url("fonts/Atkinson_Hyperlegible/WOFF/Atkinson-Hyperlegible-Italic-102.woff") format("woff"),
+	     url("fonts/Atkinson_Hyperlegible/TTF/Atkinson-Hyperlegible-Italic-102.ttf") format("truetype");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Atkinson";
+	src: url("fonts/Atkinson_Hyperlegible/WOFF2/Atkinson-Hyperlegible-Bold-102a.woff2") format("woff2"),
+	     url("fonts/Atkinson_Hyperlegible/WOFF/Atkinson-Hyperlegible-Bold-102.woff") format("woff"),
+	     url("fonts/Atkinson_Hyperlegible/TTF/Atkinson-Hyperlegible-Bold-102.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Atkinson";
+	src: url("fonts/Atkinson_Hyperlegible/WOFF2/Atkinson-Hyperlegible-BoldItalic-102a.woff2") format("woff2"),
+	     url("fonts/Atkinson_Hyperlegible/WOFF/Atkinson-Hyperlegible-BoldItalic-102.woff") format("woff"),
+	     url("fonts/Atkinson_Hyperlegible/TTF/Atkinson-Hyperlegible-BoldItalic-102.ttf") format("truetype");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+
+/* Variables
+--------------------------------------------- */
+
+:root {
+	--size-300: 0.75rem;
+	--size-400: 1rem;
+	--size-500: 1.33rem;
+	--size-600: 1.77rem;
+	--size-700: 2.36rem;
+	--size-800: 3.15rem;
+	--size-900: 4.2rem;
+}
 
 /* Box sizing
 --------------------------------------------- */
@@ -60,358 +107,105 @@ html {
 	box-sizing: border-box;
 }
 
-/*--------------------------------------------------------------
-# Base
---------------------------------------------------------------*/
-
 /* Typography
 --------------------------------------------- */
-body,
-button,
-input,
-select,
-optgroup,
-textarea {
-	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	font-size: 1rem;
+
+body {
 	line-height: 1.5;
+	font-family: Atkinson, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+	             Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif,
+	             "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+a:not([class]) {
+	color: currentColor;
+}
+
+:focus {
+	outline: 2px dashed;
+	outline-offset: 0.25rem;
+}
+
+main:focus {
+	outline: none;
+}
+
+[href]:hover {
+	text-decoration: none;
 }
 
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
-	clear: both;
+h4 {
+	font-family: Georgia, serif;
+	line-height: 1.3;
 }
 
-p {
-	margin-bottom: 1.5em;
+h1,
+h2 {
+	font-weight: 900;
 }
 
-dfn,
-cite,
-em,
-i {
-	font-style: italic;
+h1 {
+	font-size: var(--size-700);
 }
 
-blockquote {
-	margin: 0 1.5em;
+h2 {
+	font-size: var(--size-600);
 }
 
-address {
-	margin: 0 0 1.5em;
-}
-
-pre {
-	background: #eee;
-	font-family: "Courier 10 Pitch", courier, monospace;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.6em;
-}
-
-code,
-kbd,
-tt,
-var {
-	font-family: monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-}
-
-abbr,
-acronym {
-	border-bottom: 1px dotted #666;
-	cursor: help;
-}
-
-mark,
-ins {
-	background: #fff9c0;
-	text-decoration: none;
-}
-
-big {
-	font-size: 125%;
-}
-
-/* Elements
---------------------------------------------- */
-body {
-	background: #fff;
-}
-
-hr {
-	background-color: #ccc;
-	border: 0;
-	height: 1px;
-	margin-bottom: 1.5em;
-}
-
-ul,
-ol {
-	margin: 0 0 1.5em 3em;
-}
-
-ul {
-	list-style: disc;
-}
-
-ol {
-	list-style: decimal;
-}
-
-li > ul,
-li > ol {
-	margin-bottom: 0;
-	margin-left: 1.5em;
-}
-
-dt {
-	font-weight: 700;
-}
-
-dd {
-	margin: 0 1.5em 1.5em;
-}
-
-/* Make sure embeds and iframes fit their containers. */
-embed,
-iframe,
-object {
-	max-width: 100%;
+h3 {
+	font-size: var(--size-600);
 }
 
 img {
-	height: auto;
-	max-width: 100%;
+	max-width: min(55rem, 100%);
 }
 
-figure {
-	margin: 1em 0;
+figcaption {
+	font-size: var(--size-300);
+
+	font-style: italic;
+	margin-top: 1rem;
 }
 
-table {
-	margin: 0 0 1.5em;
-	width: 100%;
+blockquote {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: var(--size-600);
+	border-left: 5px solid;
+	font-style: italic;
 }
 
-/* Links
---------------------------------------------- */
-a {
-	color: #4169e1;
+::selection {
+	color: #fff;
+	background: rgba(0, 0, 0, 0.99);
 }
 
-a:visited {
-	color: #800080;
+.flow > * + * {
+	margin-top: var(--flow-space, 1em);
 }
 
-a:hover,
-a:focus,
-a:active {
-	color: #191970;
+p,
+li {
+	max-width: 60ch;
 }
 
-a:focus {
-	outline: thin dotted;
+h1 {
+	max-width: 15ch;
 }
 
-a:hover,
-a:active {
-	outline: 0;
+h2,
+h3 {
+	max-width: 25ch;
 }
 
-/* Forms
---------------------------------------------- */
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-	border: 1px solid;
-	border-color: #ccc #ccc #bbb;
-	border-radius: 3px;
-	background: #e6e6e6;
-	color: rgba(0, 0, 0, 0.8);
-	line-height: 1;
-	padding: 0.6em 1em 0.4em;
-}
-
-button:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover,
-input[type="submit"]:hover {
-	border-color: #ccc #bbb #aaa;
-}
-
-button:active,
-button:focus,
-input[type="button"]:active,
-input[type="button"]:focus,
-input[type="reset"]:active,
-input[type="reset"]:focus,
-input[type="submit"]:active,
-input[type="submit"]:focus {
-	border-color: #aaa #bbb #bbb;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"],
-input[type="number"],
-input[type="tel"],
-input[type="range"],
-input[type="date"],
-input[type="month"],
-input[type="week"],
-input[type="time"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="color"],
-textarea {
-	color: #666;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	padding: 3px;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus,
-input[type="number"]:focus,
-input[type="tel"]:focus,
-input[type="range"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="week"]:focus,
-input[type="time"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="color"]:focus,
-textarea:focus {
-	color: #111;
-}
-
-select {
-	border: 1px solid #ccc;
-}
-
-textarea {
-	width: 100%;
-}
-
-/*--------------------------------------------------------------
-# Components
---------------------------------------------------------------*/
-
-/* Navigation
---------------------------------------------- */
-.main-navigation {
-	display: block;
-	width: 100%;
-}
-
-.main-navigation ul {
-	display: none;
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-}
-
-.main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: left;
-	position: absolute;
-	top: 100%;
-	left: -999em;
-	z-index: 99999;
-}
-
-.main-navigation ul ul ul {
-	left: -999em;
-	top: 0;
-}
-
-.main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
-	display: block;
-	left: auto;
-}
-
-.main-navigation ul ul a {
-	width: 200px;
-}
-
-.main-navigation ul li:hover > ul,
-.main-navigation ul li.focus > ul {
-	left: auto;
-}
-
-.main-navigation li {
-	position: relative;
-}
-
-.main-navigation a {
-	display: block;
-	text-decoration: none;
-}
-
-/* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
-}
-
-@media screen and (min-width: 37.5em) {
-
-	.menu-toggle {
-		display: none;
-	}
-
-	.main-navigation ul {
-		display: flex;
-	}
-}
-
-main .comment-navigation,
-main
-.posts-navigation,
-main
-.post-navigation {
-	margin: 0 0 1.5em;
-}
-
-.comment-navigation .nav-links,
-.posts-navigation .nav-links,
-.post-navigation .nav-links {
-	display: flex;
-}
-
-.comment-navigation .nav-previous,
-.posts-navigation .nav-previous,
-.post-navigation .nav-previous {
-	flex: 1 0 50%;
-}
-
-.comment-navigation .nav-next,
-.posts-navigation .nav-next,
-.post-navigation .nav-next {
-	text-align: end;
-	flex: 1 0 50%;
-}
-
-/* Posts and pages
---------------------------------------------- */
-header.site-header,
+body > header,
 main,
-footer.site-footer {
+body > footer {
+	--flow-space: var(--size-700);
+
 	width: 90vw;
 	width: clamp(16rem, 90vw, 70rem);
 	margin-left: auto;
@@ -420,125 +214,50 @@ footer.site-footer {
 	padding-right: 1.5rem;
 }
 
-.sticky {
+.post time {
+	--flow-space: var(--size-400);
 	display: block;
 }
 
-.post,
-.page {
-	margin: 0 0 1.5em;
+.post :is(h2, h3) {
+	--flow-space: var(--size-900);
 }
 
-.updated:not(.published) {
-	display: none;
+.post :is(h2, h3) + * {
+	--flow-space: var(--size-400);
 }
 
-.page-content,
-.entry-content,
-.entry-summary {
-	margin: 1.5em 0 0;
+.post figure,
+.post figure + * {
+	--flow-space: var(--size-900);
 }
 
-.page-links {
-	clear: both;
-	margin: 0 0 1.5em;
-}
+@media (min-width: 45em) {
 
-/* Widgets
---------------------------------------------- */
-.widget {
-	margin: 0 0 1.5em;
-}
+	h1 {
+		font-size: var(--size-900);
+	}
 
-.widget select {
-	max-width: 100%;
-}
+	h2 {
+		font-size: var(--size-700);
+	}
 
-/* Media
---------------------------------------------- */
-.page-content .wp-smiley,
-.entry-content .wp-smiley,
-.comment-content .wp-smiley {
-	border: none;
-	margin-bottom: 0;
-	margin-top: 0;
-	padding: 0;
-}
+	p {
+		font-size: var(--size-500);
+	}
 
-/* Make sure logo link wraps around logo image. */
-.custom-logo-link {
-	display: inline-block;
-}
+	figcaption {
+		font-size: var(--size-400);
+	}
 
-/* Captions
---------------------------------------------- */
-.wp-caption {
-	margin-bottom: 1.5em;
-	max-width: 100%;
-}
+	blockquote p {
+		font-size: var(--size-600);
+		max-width: 40ch;
+	}
 
-.wp-caption img[class*="wp-image-"] {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.wp-caption .wp-caption-text {
-	margin: 0.8075em 0;
-}
-
-.wp-caption-text {
-	text-align: center;
-}
-
-/* Galleries
---------------------------------------------- */
-.gallery {
-	margin-bottom: 1.5em;
-	display: grid;
-	grid-gap: 1.5em;
-}
-
-.gallery-item {
-	display: inline-block;
-	text-align: center;
-	width: 100%;
-}
-
-.gallery-columns-2 {
-	grid-template-columns: repeat(2, 1fr);
-}
-
-.gallery-columns-3 {
-	grid-template-columns: repeat(3, 1fr);
-}
-
-.gallery-columns-4 {
-	grid-template-columns: repeat(4, 1fr);
-}
-
-.gallery-columns-5 {
-	grid-template-columns: repeat(5, 1fr);
-}
-
-.gallery-columns-6 {
-	grid-template-columns: repeat(6, 1fr);
-}
-
-.gallery-columns-7 {
-	grid-template-columns: repeat(7, 1fr);
-}
-
-.gallery-columns-8 {
-	grid-template-columns: repeat(8, 1fr);
-}
-
-.gallery-columns-9 {
-	grid-template-columns: repeat(9, 1fr);
-}
-
-.gallery-caption {
-	display: block;
+	.post time {
+		font-size: var(--size-600);
+	}
 }
 
 /*--------------------------------------------------------------
