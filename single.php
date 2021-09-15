@@ -27,7 +27,7 @@ get_header();
 		endwhile; // End of the loop.
 		?>
 
-	</main><!-- #main -->
+	</main><!-- #content -->
 
 <?php
 get_footer();

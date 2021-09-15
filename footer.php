@@ -11,8 +11,8 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
+	<footer>
+		<div class="info">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'neko' ) ); ?>">
 				<?php
 				/* translators: %s: CMS name, i.e. WordPress. */
@@ -24,9 +24,8 @@
 				/* translators: 1: Theme name, 2: Theme author. */
 				printf( esc_html__( 'Theme: %1$s by %2$s.', 'neko' ), 'Neko', '<a href="https://jakobbouchard.dev/">Jakob Bouchard</a>' );
 				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+		</div><!-- .info -->
+	</footer>
 
 <?php wp_footer(); ?>
 
