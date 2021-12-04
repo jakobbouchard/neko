@@ -15,7 +15,7 @@
 get_header();
 ?>
 
-	<main id="content">
+	<main id="content" class="flow">
 
 		<?php
 		if ( have_posts() ) :
@@ -23,7 +23,9 @@ get_header();
 			if ( is_home() && ! is_front_page() ) :
 				?>
 				<header>
-					<h1 class="screen-reader-text"><?php single_post_title(); ?></h1>
+					<div class="container">
+						<?php the_archive_title( '<h1>', '</h1>' ); ?>
+					</div>
 				</header>
 				<?php
 			endif;

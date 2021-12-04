@@ -10,42 +10,37 @@
 ?>
 
 <section class="no-results">
-	<header>
-		<h1><?php esc_html_e( 'Nothing Found', 'neko' ); ?></h1>
-	</header>
+	<div class="container">
+		<header>
+			<h1><?php esc_html_e( 'Nothing Found', 'neko' ); ?></h1>
+		</header>
 
-	<div class="page-content">
-		<?php
-		if ( is_home() && current_user_can( 'publish_posts' ) ) :
-
-			printf(
-				'<p>' . wp_kses(
-					/* translators: 1: link to WP admin new post page. */
-					__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'neko' ),
-					array(
-						'a' => array(
-							'href' => array(),
-						),
-					)
-				) . '</p>',
-				esc_url( admin_url( 'post-new.php' ) )
-			);
-
-		elseif ( is_search() ) :
-			?>
-
-			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'neko' ); ?></p>
+		<div>
 			<?php
-			get_search_form();
-
-		else :
+			if ( is_home() && current_user_can( 'publish_posts' ) ) :
+				printf(
+					'<p>' . wp_kses(
+						/* translators: 1: link to WP admin new post page. */
+						__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'neko' ),
+						array(
+							'a' => array(
+								'href' => array(),
+							),
+						)
+					) . '</p>',
+					esc_url( admin_url( 'post-new.php' ) )
+				);
+			elseif ( is_search() ) :
+				?>
+				<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'neko' ); ?></p>
+				<?php
+				get_search_form();
+			else :
+				?>
+				<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for.', 'neko' ); ?></p>
+				<?php
+			endif;
 			?>
-
-			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'neko' ); ?></p>
-			<?php
-			get_search_form();
-
-		endif;
-		?>
-	</div><!-- .page-content -->
+		</div>
+	</div>
 </section><!-- .no-results -->

@@ -10,17 +10,19 @@
 get_header();
 ?>
 
-	<main id="content">
+	<main id="content" class="flow">
 
 		<?php if ( have_posts() ) : ?>
 
 			<header>
-				<h1>
-					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'neko' ), '<span>' . get_search_query() . '</span>' );
-					?>
-				</h1>
+				<div class="container">
+					<h1>
+						<?php
+						/* translators: %s: search query. */
+						printf( esc_html__( 'Search Results for: %s', 'neko' ), '<span>' . get_search_query() . '</span>' );
+						?>
+					</h1>
+				</div>
 			</header><!-- .page-header -->
 
 			<?php

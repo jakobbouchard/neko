@@ -118,20 +118,56 @@ add_action( 'after_setup_theme', 'neko_content_width', 0 );
  * Enqueue scripts and styles.
  */
 function neko_scripts() {
-	wp_enqueue_style( 'neko-style', get_stylesheet_uri(), array(), NEKO_VERSION );
-
-	wp_deregister_script( 'wp-embed' );
 	// Remove dashicons in frontend for unauthenticated users.
 	if ( ! is_user_logged_in() ) {
 		wp_deregister_style( 'dashicons' );
 	}
+	// Remove the block library CSS
+	wp_deregister_style( 'wp-block-library' );
+	wp_deregister_script( 'wp-embed' );
 
-	wp_enqueue_script( 'neko-navigation', get_template_directory_uri() . '/js/navigation.js', array(), NEKO_VERSION, true );
+	wp_enqueue_style( 'neko-style', get_stylesheet_uri(), array(), NEKO_VERSION );
 }
 add_action( 'wp_enqueue_scripts', 'neko_scripts' );
 
+function neko_umami_analytics() {
+	$umami_url     = 'https://umami.jakobbouchard.dev/umami.js';
+	$umami_id      = '51fa3a05-a31c-4c89-bbc8-d219cb47294b';
+	$umami_domains = 'jakobbouchard.dev';
+
+	echo '<!-- Umami – own your website analytics -->';
+	echo '<script async defer
+	              src="'.$umami_url.'"
+	              data-website-id="'.$umami_id.'"
+	              data-domains="'.$umami_domains.'"
+	              data-do-not-track="true"
+	      ></script>';
+}
+add_action( 'wp_head', 'neko_umami_analytics' );
+
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+/**
+ * Remove archive labels.
+ */
+function neko_archive_title( $title ) {
+	if ( is_category() ) {
+		$title = single_cat_title( '', false );
+	} elseif ( is_tag() ) {
+		$title = single_tag_title( '', false );
+	} elseif ( is_author() ) {
+		$title = '<span class="vcard">' . get_the_author() . '</span>';
+	} elseif ( is_post_type_archive() ) {
+		$title = post_type_archive_title( '', false );
+	} elseif ( is_tax() ) {
+		$title = single_term_title( '', false );
+	} elseif ( is_home() ) {
+		$title = single_post_title( '', false );
+	}
+	return $title;
+}
+add_filter( 'get_the_archive_title', 'neko_archive_title' );
 
 /**
  * Custom template tags for this theme.

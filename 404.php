@@ -12,11 +12,15 @@ get_header();
 
 	<main id="content">
 		<header>
-			<h1><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'neko' ); ?></h1>
+			<div class="container">
+				<h1><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'neko' ); ?></h1>
+			</div>
 		</header>
 
 		<div class="page-content">
-			<p><?php esc_html_e( 'It looks like nothing was found at this location.', 'neko' ); ?></p>
+			<div class="container">
+				<p><?php esc_html_e( 'It looks like nothing was found at this location.', 'neko' ); ?></p>
+			</div>
 		</div><!-- .page-content -->
 	</main><!-- #content -->
 

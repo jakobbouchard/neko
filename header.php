@@ -24,35 +24,35 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<div id="page">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'neko' ); ?></a>
 
-	<header>
-		<div class="branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+	<header class="site-header">
+		<div class="container">
+			<div class="branding">
 				<?php
-			else :
+				the_custom_logo();
+				if ( is_front_page() ) :
+					?>
+					<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+					<?php
+				else :
+					?>
+					<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+					<?php
+				endif;
 				?>
-				<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+			</div><!-- .branding -->
+			<nav>
 				<?php
-			endif;
-			?>
-		</div><!-- .branding -->
-
-		<nav>
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'neko' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'primary-menu',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav>
-
-		<?php get_search_form(); ?>
+				wp_nav_menu(
+					array(
+						'theme_location' => 'primary-menu',
+						'menu_id'        => 'primary-menu',
+						'container'      => ''
+					)
+				);
+				?>
+			</nav>
+		</div>
 	</header>
