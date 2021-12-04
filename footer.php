@@ -11,21 +11,19 @@
 
 ?>
 
-	<footer>
-		<div class="info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'neko' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'neko' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'neko' ), 'Neko', '<a href="https://jakobbouchard.dev/">Jakob Bouchard</a>' );
-				?>
-		</div><!-- .info -->
+	<footer class="site-footer">
+		<div class="container flow">
+			<div class="info">
+				<a href="<?php the_permalink( get_page_by_path( 'privacy' ) ); ?>"><?php _e( 'Privacy', 'neko' ); ?></a>
+				<span class="sep"> | </span>
+				<a href="/feed"><?php _e( 'RSS Feed', 'neko' ); ?></a>
+			</div><!-- .info -->
+			<div class="kb-club">
+				<a target="blank" href="https://512kb.club"><span class="kb-club-no-bg">512KB Club</span><span class="kb-club-bg">Green Team</span></a>
+			</div><!-- .kb-club -->
+		</div>
 	</footer>
+</div><!-- #page -->
 
 <?php wp_footer(); ?>
 

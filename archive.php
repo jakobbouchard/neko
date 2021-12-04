@@ -10,15 +10,14 @@
 get_header();
 ?>
 
-	<main id="content">
+	<main id="content" class="flow">
 
 		<?php if ( have_posts() ) : ?>
 
 			<header>
-				<?php
-				the_archive_title( '<h1>', '</h1>' );
-				the_archive_description( '<p>', '</p>' );
-				?>
+				<div class="container">
+					<?php the_archive_title( '<h1>', '</h1>' ); ?>
+				</div>
 			</header>
 
 			<?php

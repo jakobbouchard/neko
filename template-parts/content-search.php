@@ -10,26 +10,24 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header>
-		<?php the_title( sprintf( '<h2><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+	<div class="container">
+		<header>
+			<?php the_title( sprintf( '<h2><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+			<?php if ( 'post' === get_post_type() ) : ?>
+			<div class="entry-meta">
+				<?php neko_posted_on(); ?>
+			</div><!-- .entry-meta -->
+			<?php endif; ?>
+		</header>
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php
-			neko_posted_on();
-			neko_posted_by();
-			?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header>
+		<?php neko_post_thumbnail(); ?>
 
-	<?php neko_post_thumbnail(); ?>
+		<div class="flow">
+			<?php the_excerpt(); ?>
+		</div>
 
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-
-	<footer class="entry-footer">
-		<?php neko_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+		<footer>
+			<?php neko_entry_footer(); ?>
+		</footer>
+	</div>
 </article><!-- #post-<?php the_ID(); ?> -->
