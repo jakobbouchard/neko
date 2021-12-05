@@ -4,17 +4,19 @@
 	"description": "Hi. I'm a theme called Neko.",
 	"author": "Jakob Bouchard",
 	"license": "GPL-2.0-or-later",
-	"keywords": [
-		"WordPress",
-		"Theme"
-	],
+	"bugs": {
+		"url": "https://github.com/jakobbouchard/neko/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jakobbouchard/neko.git"
+	},
+	"homepage": "https://github.com/jakobbouchard/neko#readme",
 	"devDependencies": {
-		"@wordpress/scripts": "^12.1.0",
-		"dir-archiver": "^1.1.1"
+		"@wordpress/stylelint-config": "^19.1.0",
+		"stylelint": "^13.13.1"
 	},
 	"scripts": {
-		"lint:css": "wp-scripts lint-style '*.css'",
-		"lint:js": "wp-scripts lint-js 'js/*.js'",
-		"bundle": "dir-archiver --src . --dest ../neko.zip --exclude .DS_Store .editorconfig .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json phpcs.xml.dist"
+		"lint:css": "stylelint **/*.css --fix -i .gitignore"
 	}
 }

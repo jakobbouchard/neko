@@ -5,176 +5,213 @@
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package Neko
+ * @since Neko 1.0.0
  */
+
 
 if ( ! defined( 'NEKO_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( 'NEKO_VERSION', '1.0.0' );
 }
 
-if ( ! function_exists( 'neko_setup' ) ) :
+if ( ! function_exists( 'neko_support' ) ) :
+
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
-	 * Note that this function is hooked into the after_setup_theme hook, which
-	 * runs before the init hook. The init hook is too late for some features, such
-	 * as indicating support for post thumbnails.
+	 * @since Neko 2.0.0
+	 *
+	 * @return void
 	 */
-	function neko_setup() {
-		/*
-		 * Make theme available for translation.
-		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Neko, use a find and replace
-		 * to change 'neko' to the name of your theme in all the template files.
-		 */
-		load_theme_textdomain( 'neko', get_template_directory() . '/languages' );
+	function neko_support() {
 
-		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+		// Add support for block styles.
+		add_theme_support( 'wp-block-styles' );
 
-		/*
-		 * Let WordPress manage the document title.
-		 * By adding theme support, we declare that this theme does not use a
-		 * hard-coded <title> tag in the document head, and expect WordPress to
-		 * provide it for us.
-		 */
-		add_theme_support( 'title-tag' );
+		// Enqueue editor styles.
+		add_editor_style( 'style.css' );
 
-		/*
-		 * Enable support for Post Thumbnails on posts and pages.
-		 *
-		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		 */
-		add_theme_support( 'post-thumbnails' );
-
-		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus(
-			array(
-				'primary-menu' => esc_html__( 'Primary', 'neko' ),
-			)
-		);
-
-		/*
-		 * Switch default core markup for search form, comment form, and comments
-		 * to output valid HTML5.
-		 */
-		add_theme_support(
-			'html5',
-			array(
-				'search-form',
-				'gallery',
-				'caption',
-				'style',
-				'script',
-			)
-		);
-
-		// Set up the WordPress core custom background feature.
-		add_theme_support(
-			'custom-background',
-			apply_filters(
-				'neko_custom_background_args',
-				array(
-					'default-color' => 'ffffff',
-					'default-image' => '',
-				)
-			)
-		);
-
-		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
-
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
-		add_theme_support(
-			'custom-logo',
-			array(
-				'height'      => 250,
-				'width'       => 250,
-				'flex-width'  => true,
-				'flex-height' => true,
-			)
-		);
 	}
+
 endif;
-add_action( 'after_setup_theme', 'neko_setup' );
 
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function neko_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'neko_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'neko_content_width', 0 );
+add_action( 'after_setup_theme', 'neko_support' );
 
-/**
- * Enqueue scripts and styles.
- */
-function neko_scripts() {
-	// Remove dashicons in frontend for unauthenticated users.
-	if ( ! is_user_logged_in() ) {
-		wp_deregister_style( 'dashicons' );
+if ( ! function_exists( 'neko_styles' ) ) :
+
+	/**
+	 * Enqueue styles.
+	 *
+	 * @since Neko 1.0.0
+	 *
+	 * @return void
+	 */
+	function neko_styles() {
+
+		// Remove dashicons in frontend for unauthenticated users.
+		if ( ! is_user_logged_in() ) {
+			wp_deregister_style( 'dashicons' );
+		}
+
+		// Register theme stylesheet.
+		wp_register_style(
+			'neko-style',
+			get_template_directory_uri() . '/style.css',
+			array(),
+			wp_get_theme()->get( 'Version' )
+		);
+
+		// Add styles inline.
+		wp_add_inline_style( 'neko-style', neko_get_font_face_styles() );
+
+		// Enqueue theme stylesheet.
+		wp_enqueue_style( 'neko-style' );
+
 	}
-	// Remove the block library CSS
-	wp_deregister_style( 'wp-block-library' );
-	wp_deregister_script( 'wp-embed' );
 
-	wp_enqueue_style( 'neko-style', get_stylesheet_uri(), array(), NEKO_VERSION );
-}
-add_action( 'wp_enqueue_scripts', 'neko_scripts' );
+endif;
 
-function neko_umami_analytics() {
-	$umami_url     = 'https://umami.jakobbouchard.dev/umami.js';
-	$umami_id      = '51fa3a05-a31c-4c89-bbc8-d219cb47294b';
-	$umami_domains = 'jakobbouchard.dev';
+add_action( 'wp_enqueue_scripts', 'neko_styles' );
 
-	echo '<!-- Umami – own your website analytics -->';
-	echo '<script async defer
-	              src="'.$umami_url.'"
-	              data-website-id="'.$umami_id.'"
-	              data-domains="'.$umami_domains.'"
-	              data-do-not-track="true"
-	      ></script>';
-}
+if ( ! function_exists( 'neko_umami_analytics' ) ) :
+
+	/**
+	 * Adds umami analytics script.
+	 *
+	 * @since Neko 1.0.0
+	 *
+	 * @return void
+	 */
+	function neko_umami_analytics() {
+		?>
+		<!-- Umami – own your website analytics -->
+		<script async defer
+		        src="https://umami.jakobbouchard.dev/umami.js"
+		        data-website-id="51fa3a05-a31c-4c89-bbc8-d219cb47294b"
+		        data-domains="jakobbouchard.dev"
+		        data-do-not-track="true"
+		></script>
+		<?php
+	}
+
+endif;
+
 add_action( 'wp_head', 'neko_umami_analytics' );
 
+// Is this still needed?
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
-/**
- * Remove archive labels.
- */
-function neko_archive_title( $title ) {
-	if ( is_category() ) {
-		$title = single_cat_title( '', false );
-	} elseif ( is_tag() ) {
-		$title = single_tag_title( '', false );
-	} elseif ( is_author() ) {
-		$title = '<span class="vcard">' . get_the_author() . '</span>';
-	} elseif ( is_post_type_archive() ) {
-		$title = post_type_archive_title( '', false );
-	} elseif ( is_tax() ) {
-		$title = single_term_title( '', false );
-	} elseif ( is_home() ) {
-		$title = single_post_title( '', false );
+if ( ! function_exists( 'neko_editor_styles' ) ) :
+
+	/**
+	 * Enqueue editor styles.
+	 *
+	 * @since Neko 1.0.0
+	 *
+	 * @return void
+	 */
+	function neko_editor_styles() {
+
+		// Add styles inline.
+		wp_add_inline_style( 'wp-block-library', neko_get_font_face_styles() );
+
 	}
-	return $title;
-}
-add_filter( 'get_the_archive_title', 'neko_archive_title' );
 
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
+endif;
 
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
+add_action( 'admin_init', 'neko_editor_styles' );
+
+
+if ( ! function_exists( 'neko_get_font_face_styles' ) ) :
+
+	/**
+	 * Get font face styles.
+	 * Called by functions neko_styles() and neko_editor_styles() above.
+	 *
+	 * @since Neko 2.0.0
+	 *
+	 * @return string
+	 */
+	function neko_get_font_face_styles() {
+
+		return "
+		@font-face {
+			font-family: 'Atkinson';
+			font-weight: 400;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+			src: url('" . get_theme_file_uri( 'assets/fonts/fonts/Atkinson_Hyperlegible/WOFF2/Atkinson-Hyperlegible-Regular-102a.woff2' ) . "')
+					format('woff2'),
+				url('" . get_theme_file_uri( 'assets/fonts/fonts/Atkinson_Hyperlegible/WOFF/Atkinson-Hyperlegible-Regular-102a.woff' ) . "')
+					format('woff');
+		}
+
+		@font-face {
+			font-family: 'Atkinson';
+			font-weight: 400;
+			font-style: italic;
+			font-stretch: normal;
+			font-display: swap;
+			src: url('" . get_theme_file_uri( 'assets/fonts/fonts/Atkinson_Hyperlegible/WOFF2/Atkinson-Hyperlegible-Italic-102a.woff2' ) . "')
+					format('woff2'),
+				url('" . get_theme_file_uri( 'assets/fonts/fonts/Atkinson_Hyperlegible/WOFF/Atkinson-Hyperlegible-Italic-102a.woff' ) . "')
+					format('woff');
+		}
+
+		@font-face {
+			font-family: 'Atkinson';
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+			src: url('" . get_theme_file_uri( 'assets/fonts/fonts/Atkinson_Hyperlegible/WOFF2/Atkinson-Hyperlegible-Bold-102a.woff2' ) . "')
+					format('woff2'),
+				url('" . get_theme_file_uri( 'assets/fonts/fonts/Atkinson_Hyperlegible/WOFF/Atkinson-Hyperlegible-Bold-102a.woff' ) . "')
+					format('woff');
+		}
+
+		@font-face {
+			font-family: 'Atkinson';
+			font-weight: 700;
+			font-style: italic;
+			font-stretch: normal;
+			font-display: swap;
+			src: url('" . get_theme_file_uri( 'assets/fonts/fonts/Atkinson_Hyperlegible/WOFF2/Atkinson-Hyperlegible-BoldItalic-102a.woff2' ) . "')
+					format('woff2'),
+				url('" . get_theme_file_uri( 'assets/fonts/fonts/Atkinson_Hyperlegible/WOFF/Atkinson-Hyperlegible-BoldItalic-102a.woff' ) . "')
+					format('woff');
+		}
+		";
+
+	}
+
+endif;
+
+if ( ! function_exists( 'neko_preload_webfonts' ) ) :
+
+	/**
+	 * Preloads the main web font to improve performance.
+	 *
+	 * Only the main web font (font-style: normal) is preloaded here since that font is always relevant (e.g. it used
+	 * on every heading). The other font is only needed if there is any applicable content in italic style, and
+	 * therefore preloading it would in most cases regress performance when that font would otherwise not be loaded at
+	 * all.
+	 *
+	 * @since Neko 2.0.0
+	 *
+	 * @return void
+	 */
+	function neko_preload_webfonts() {
+		?>
+		<link rel="preload" href="<?php echo esc_url( get_theme_file_uri( 'assets/fonts/fonts/Atkinson_Hyperlegible/WOFF2/Atkinson-Hyperlegible-Regular-102a.woff2' ) ); ?>" as="font" type="font/woff2" crossorigin>
+		<?php
+	}
+
+endif;
+
+add_action( 'wp_head', 'neko_preload_webfonts' );
+
+// Add block patterns
+require get_template_directory() . '/inc/block-patterns.php';

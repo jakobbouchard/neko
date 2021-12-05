@@ -1,15 +1,3 @@
 {
-	"extends": [
-		"stylelint-config-wordpress/scss"
-	],
-	"rules": {
-		"declaration-colon-newline-after": null,
-		"value-list-comma-newline-after": null,
-		"font-family-no-missing-generic-family-keyword": null,
-		"no-descending-specificity": null,
-		"block-no-empty": null,
-		"no-duplicate-selectors": null,
-		"font-family-no-duplicate-names": null,
-		"selector-class-pattern": null
-	}
+	"extends": "stylelint-config-recommended"
 }
