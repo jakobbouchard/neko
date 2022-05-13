@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying all pages
  *
@@ -15,17 +16,17 @@
 get_header();
 ?>
 
-	<main id="content">
+<main id="content">
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+	<?php
+	while (have_posts()) :
+		the_post();
 
-			get_template_part( 'template-parts/content', 'page' );
-		endwhile; // End of the loop.
-		?>
+		get_template_part('template-parts/content', 'page');
+	endwhile; // End of the loop.
+	?>
 
-	</main><!-- #content -->
+</main><!-- #content -->
 
 <?php
 get_footer();

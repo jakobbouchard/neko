@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Neko functions and definitions
  *
@@ -7,12 +8,12 @@
  * @package Neko
  */
 
-if ( ! defined( 'NEKO_VERSION' ) ) {
+if (!defined('NEKO_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define( 'NEKO_VERSION', '1.0.0' );
+	define('NEKO_VERSION', '1.0.0');
 }
 
-if ( ! function_exists( 'neko_setup' ) ) :
+if (!function_exists('neko_setup')) {
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -20,17 +21,18 @@ if ( ! function_exists( 'neko_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function neko_setup() {
+	function neko_setup()
+	{
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on Neko, use a find and replace
 		 * to change 'neko' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'neko', get_template_directory() . '/languages' );
+		load_theme_textdomain('neko', get_template_directory() . '/languages');
 
 		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+		add_theme_support('automatic-feed-links');
 
 		/*
 		 * Let WordPress manage the document title.
@@ -38,19 +40,19 @@ if ( ! function_exists( 'neko_setup' ) ) :
 		 * hard-coded <title> tag in the document head, and expect WordPress to
 		 * provide it for us.
 		 */
-		add_theme_support( 'title-tag' );
+		add_theme_support('title-tag');
 
 		/*
 		 * Enable support for Post Thumbnails on posts and pages.
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
-		add_theme_support( 'post-thumbnails' );
+		add_theme_support('post-thumbnails');
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'primary-menu' => esc_html__( 'Primary', 'neko' ),
+				'primary-menu' => esc_html__('Primary', 'neko'),
 			)
 		);
 
@@ -82,7 +84,7 @@ if ( ! function_exists( 'neko_setup' ) ) :
 		);
 
 		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support('customize-selective-refresh-widgets');
 
 		/**
 		 * Add support for core custom logo.
@@ -99,8 +101,8 @@ if ( ! function_exists( 'neko_setup' ) ) :
 			)
 		);
 	}
-endif;
-add_action( 'after_setup_theme', 'neko_setup' );
+}
+add_action('after_setup_theme', 'neko_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -109,65 +111,69 @@ add_action( 'after_setup_theme', 'neko_setup' );
  *
  * @global int $content_width
  */
-function neko_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'neko_content_width', 640 );
+function neko_content_width()
+{
+	$GLOBALS['content_width'] = apply_filters('neko_content_width', 640);
 }
-add_action( 'after_setup_theme', 'neko_content_width', 0 );
+add_action('after_setup_theme', 'neko_content_width', 0);
 
 /**
  * Enqueue scripts and styles.
  */
-function neko_scripts() {
+function neko_scripts()
+{
 	// Remove dashicons in frontend for unauthenticated users.
-	if ( ! is_user_logged_in() ) {
-		wp_deregister_style( 'dashicons' );
+	if (!is_user_logged_in()) {
+		wp_deregister_style('dashicons');
 	}
 	// Remove the block library CSS
-	wp_deregister_style( 'wp-block-library' );
-	wp_deregister_script( 'wp-embed' );
+	wp_deregister_style('wp-block-library');
+	wp_deregister_script('wp-embed');
 
-	wp_enqueue_style( 'neko-style', get_stylesheet_uri(), array(), NEKO_VERSION );
+	wp_enqueue_style('neko-style', get_stylesheet_uri(), array(), NEKO_VERSION);
 }
-add_action( 'wp_enqueue_scripts', 'neko_scripts' );
+add_action('wp_enqueue_scripts', 'neko_scripts');
 
-function neko_umami_analytics() {
+function neko_umami_analytics()
+{
 	$umami_url     = 'https://umami.jakobbouchard.dev/umami.js';
 	$umami_id      = '51fa3a05-a31c-4c89-bbc8-d219cb47294b';
 	$umami_domains = 'jakobbouchard.dev';
 
 	echo '<!-- Umami – own your website analytics -->';
 	echo '<script async defer
-	              src="'.$umami_url.'"
-	              data-website-id="'.$umami_id.'"
-	              data-domains="'.$umami_domains.'"
+	              src="' . $umami_url . '"
+	              data-website-id="' . $umami_id . '"
+	              data-domains="' . $umami_domains . '"
 	              data-do-not-track="true"
 	      ></script>';
 }
-add_action( 'wp_head', 'neko_umami_analytics' );
+add_action('wp_head', 'neko_umami_analytics');
 
-remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-remove_action( 'wp_print_styles', 'print_emoji_styles' );
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
 
 /**
  * Remove archive labels.
  */
-function neko_archive_title( $title ) {
-	if ( is_category() ) {
-		$title = single_cat_title( '', false );
-	} elseif ( is_tag() ) {
-		$title = single_tag_title( '', false );
-	} elseif ( is_author() ) {
+function neko_archive_title($title)
+{
+	if (is_category()) {
+		$title = single_cat_title('', false);
+	} elseif (is_tag()) {
+		$title = single_tag_title('', false);
+	} elseif (is_author()) {
 		$title = '<span class="vcard">' . get_the_author() . '</span>';
-	} elseif ( is_post_type_archive() ) {
-		$title = post_type_archive_title( '', false );
-	} elseif ( is_tax() ) {
-		$title = single_term_title( '', false );
-	} elseif ( is_home() ) {
-		$title = single_post_title( '', false );
+	} elseif (is_post_type_archive()) {
+		$title = post_type_archive_title('', false);
+	} elseif (is_tax()) {
+		$title = single_term_title('', false);
+	} elseif (is_home()) {
+		$title = single_post_title('', false);
 	}
 	return $title;
 }
-add_filter( 'get_the_archive_title', 'neko_archive_title' );
+add_filter('get_the_archive_title', 'neko_archive_title');
 
 /**
  * Custom template tags for this theme.

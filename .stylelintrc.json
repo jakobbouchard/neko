@@ -1,7 +1,5 @@
 {
-	"extends": [
-		"stylelint-config-wordpress/scss"
-	],
+	"extends": ["stylelint-config-wordpress/scss"],
 	"rules": {
 		"declaration-colon-newline-after": null,
 		"value-list-comma-newline-after": null,
