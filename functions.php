@@ -150,6 +150,43 @@ function neko_umami_analytics()
 }
 add_action('wp_head', 'neko_umami_analytics');
 
+function neko_schemas()
+{
+	ob_start(); ?>
+
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "BlogPosting",
+			"image": "http://example.com/images/image.jpg",
+			"url": "http://example.com/blog/post",
+			"headline": "Title",
+			"datePublished": "2019-02-11T11:11:11",
+			"dateModified": "2019-02-11T11:11:11",
+			"inLanguage": "en-CA",
+			"author": {
+				"@type": "Person",
+				"name": "Jakob Bouchard",
+				"url": "https://jakobbouchard.dev"
+			},
+			"mainEntityOfPage": "True",
+			"keywords": [
+				"keyword1",
+				"keyword2",
+				"keyword3",
+				"keyword4"
+			],
+			"genre": ["Tag1", "Tag2"],
+			"articleSection": "Main category",
+			"articleBody": "Paste the body of your content in here in plaintext"
+		}
+	</script>
+
+<?php echo ob_get_clean();
+	ob_flush();
+}
+//add_action('wp_head', 'neko_schemas');
+
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 
